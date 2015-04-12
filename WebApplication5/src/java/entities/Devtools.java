@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -38,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Devtools.findAll", query = "SELECT d FROM Devtools d"),
     @NamedQuery(name = "Devtools.findById", query = "SELECT d FROM Devtools d WHERE d.id = :id"),
+    @NamedQuery(name = "Devtools.findByIdUser", query = "SELECT d FROM Devtools d WHERE d.idUser.id = :id"),
     @NamedQuery(name = "Devtools.findByType", query = "SELECT d FROM Devtools d WHERE d.type = :type"),
     @NamedQuery(name = "Devtools.findByRank", query = "SELECT d FROM Devtools d WHERE d.rank = :rank"),
     @NamedQuery(name = "Devtools.findByCreatedAt", query = "SELECT d FROM Devtools d WHERE d.createdAt = :createdAt"),
@@ -45,6 +47,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Devtools.findByUrl", query = "SELECT d FROM Devtools d WHERE d.url = :url"),
     @NamedQuery(name = "Devtools.findByImagePath", query = "SELECT d FROM Devtools d WHERE d.imagePath = :imagePath")})
 public class Devtools implements Serializable {
+    
+    @Column(name = "name")
+    private String name;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,9 +79,9 @@ public class Devtools implements Serializable {
     private String imagePath;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDevtool")
     private Collection<Comments> commentsCollection;
-    @JoinColumn(name = "iduser", referencedColumnName = "id")
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
     @ManyToOne
-    private Users iduser;
+    private Users idUser;
 
     public Devtools() {
     }
@@ -104,6 +109,7 @@ public class Devtools implements Serializable {
     public Integer getRank() {
         return rank;
     }
+
 
     public void setRank(Integer rank) {
         this.rank = rank;
@@ -158,12 +164,12 @@ public class Devtools implements Serializable {
         this.commentsCollection = commentsCollection;
     }
 
-    public Users getIduser() {
-        return iduser;
+    public Users getIdUser() {
+        return idUser;
     }
 
-    public void setIduser(Users iduser) {
-        this.iduser = iduser;
+    public void setIdUser(Users idUser) {
+        this.idUser = idUser;
     }
 
     @Override
@@ -189,6 +195,14 @@ public class Devtools implements Serializable {
     @Override
     public String toString() {
         return "entities.Devtools[ id=" + id + " ]";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

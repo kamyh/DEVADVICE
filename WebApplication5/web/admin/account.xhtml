@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Account page</title>
+        
+        <f:facet name="middle">
+            <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+            <h:outputScript name="bootstrap/js/bootstrap.js" />
+        </f:facet>
+    </h:head>
+    <h:body class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Account</h3>
+              Welcome <strong>#{request.getRemoteUser()}</strong><br/>
+            </div>
+            <div class="panel-body">
+                <h:panelGroup>
+                    <a class="btn btn-default btn-lg" href="/WebApplication5/devtools/Create.xhtml">
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New Tool
+                    </a>
+                    <br/>
+                </h:panelGroup>
+                <br/>
+                <h:panelGroup>
+                    <a class="btn btn-default btn-lg" href="/WebApplication5/devtools/List.xhtml">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> My Developpement Tools
+                    </a>
+                    <br/>
+                </h:panelGroup>
+                <br/>
+                <br/>
+                
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Statistics</h3>
+                    </div>
+                    <div class="panel-body">
+                      Panel Statistics
+                    </div>
+                  </div>
+                <br/>
+              Go back to <h:link outcome="/default/index">Index</h:link>
+            </div>
+          </div>
+    </h:body>
+</html>
+

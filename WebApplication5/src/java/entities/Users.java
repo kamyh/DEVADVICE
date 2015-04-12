@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -62,9 +63,11 @@ public class Users implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "lastname")
     private String lastname;
+    @ManyToMany(mappedBy = "usersCollection")
+    private Collection<Groups> groupsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
     private Collection<Comments> commentsCollection;
-    @OneToMany(mappedBy = "iduser")
+    @OneToMany(mappedBy = "idUser")
     private Collection<Devtools> devtoolsCollection;
 
     public Users() {
@@ -119,6 +122,15 @@ public class Users implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    @XmlTransient
+    public Collection<Groups> getGroupsCollection() {
+        return groupsCollection;
+    }
+
+    public void setGroupsCollection(Collection<Groups> groupsCollection) {
+        this.groupsCollection = groupsCollection;
     }
 
     @XmlTransient

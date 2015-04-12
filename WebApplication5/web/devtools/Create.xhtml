@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDevtoolsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Fill The Informations</h3>
+                </div>
+                <div class="panel-body">
+                    <h:form>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Type</span>
+                                    <h:inputText id="type" class="form-control" value="#{devtoolsController.selected.type}" title="#{bundle.CreateDevtoolsTitle_type}" />
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Description</span>
+                                    <h:inputTextarea id="description" class="form-control" value="#{devtoolsController.selected.description}" title="#{bundle.CreateDevtoolsTitle_description}" />
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Url</span>
+                                    <h:inputText id="url" class="form-control" value="#{devtoolsController.selected.url}" title="#{bundle.CreateDevtoolsLabel_url}" />
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Image</span>
+                                    <h:inputFile id="img" class="form-control" value="#{devtoolsController.selected.imagePath}" title="#{bundle.CreateDevtoolsLabel_imagePath}" />
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                <h:commandLink action="#{devtoolsController.create}" styleClass="btn btn-primary">
+                    <i class="icon-search"></i> #{bundle.CreateDevtoolsSaveLink}
+                </h:commandLink>
+                <br />
+                <br />
+                <h:commandLink action="#{devtoolsController.prepareList}" value="#{bundle.CreateDevtoolsShowAllLink}" immediate="true" styleClass="btn btn-primary"/>
+                    
+                <h:link outcome="/index" value="#{bundle.CreateDevtoolsIndexLink}" styleClass="btn btn-primary" style="margin-left: 2%"/>
+                </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

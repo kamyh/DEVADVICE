@@ -36,6 +36,11 @@
             <description/>
             <url-pattern>/bootstrap/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>javax.faces.resource</web-resource-name>
+            <description/>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <role-name>default_user_role</role-name>
         </auth-constraint>
@@ -49,6 +54,7 @@
         </form-login-config>
     </login-config>
     <security-role>
+        <description/>
         <role-name>default_user_role</role-name>
     </security-role>
     <security-constraint>
@@ -72,6 +78,11 @@
             <description/>
             <url-pattern>/resources/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>/javax.faces.resource/*</web-resource-name>
+            <description/>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <role-name>other_user_role</role-name>
         </auth-constraint>
@@ -93,6 +104,16 @@
             <web-resource-name>/resources/*</web-resource-name>
             <description/>
             <url-pattern>/resources/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>devtools</web-resource-name>
+            <description/>
+            <url-pattern>/devtools/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>users</web-resource-name>
+            <description/>
+            <url-pattern>/users/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>admin_role</role-name>

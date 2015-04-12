@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDevtoolsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDevtoolsEmpty}" rendered="#{devtoolsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{devtoolsController.items.rowCount > 0}">
+                    <h:outputText value="#{devtoolsController.pagination.pageFirstItem + 1}..#{devtoolsController.pagination.pageLastItem + 1}/#{devtoolsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{devtoolsController.previous}" value="#{bundle.Previous} #{devtoolsController.pagination.pageSize}" rendered="#{devtoolsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{devtoolsController.next}" value="#{bundle.Next} #{devtoolsController.pagination.pageSize}" rendered="#{devtoolsController.pagination.hasNextPage}"/>&nbsp;
+                    
+
+                    <h:dataTable class="row" value="#{devtoolsController.items}" var="item" >
+                        <h:column>
+                            <div class="col-sm-6 col-md-4">
+                              <div class="thumbnail">
+                                  <img src="..." alt="..."></img>
+                                <div class="caption">
+                                    <h3><h:outputText value="#{item.name}"/></h3>
+                                    <p><h:outputText value="#{item.description}"/></p>
+                                    <p>
+                                        <h:commandLink class="btn btn-success" action="#{devtoolsController.prepareView}" value="#{bundle.ListDevtoolsViewLink}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink class="btn btn-success" action="#{devtoolsController.prepareEdit}" value="#{bundle.ListDevtoolsEditLink}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink class="btn btn-danger" action="#{devtoolsController.destroy}" value="#{bundle.ListDevtoolsDestroyLink}"/>
+                                    </p>
+                                </div>
+                              </div>
+                            </div>   
+                        </h:column>
+                    </h:dataTable>
+
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{devtoolsController.prepareCreate}" value="#{bundle.ListDevtoolsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDevtoolsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
