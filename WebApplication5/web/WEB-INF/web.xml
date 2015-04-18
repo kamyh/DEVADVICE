@@ -19,7 +19,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>default/index.xhtml</welcome-file>
+        <welcome-file>devtools/search.xhtml</welcome-file>
     </welcome-file-list>
     <security-constraint>
         <web-resource-collection>
@@ -41,9 +41,30 @@
             <description/>
             <url-pattern>/javax.faces.resource/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>public</web-resource-name>
+            <description/>
+            <url-pattern>/devtools/search.xhtml</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <role-name>default_user_role</role-name>
         </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Constraint1</display-name>
+        <web-resource-collection>
+            <web-resource-name>p</web-resource-name>
+            <description/>
+            <url-pattern>/devtools/search.xhtml</url-pattern>
+            <url-pattern>/users/Create.xhtml</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>theme</web-resource-name>
+            <description/>
+            <url-pattern>/bootstrap/*</url-pattern>
+            <url-pattern>/resources/*</url-pattern>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
     </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
@@ -82,6 +103,11 @@
             <web-resource-name>/javax.faces.resource/*</web-resource-name>
             <description/>
             <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>public</web-resource-name>
+            <description/>
+            <url-pattern>/devtools/search.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>other_user_role</role-name>

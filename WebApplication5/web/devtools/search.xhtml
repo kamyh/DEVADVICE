@@ -8,21 +8,53 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListDevtoolsTitle}"></h:outputText>
+            <h:outputText value="Developpement Tools"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListDevtoolsEmpty}" rendered="#{devtoolsController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{devtoolsController.items.rowCount > 0}">
-                    <h:outputText value="#{devtoolsController.pagination.pageFirstItem + 1}..#{devtoolsController.pagination.pageLastItem + 1}/#{devtoolsController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{devtoolsController.previous}" value="#{bundle.Previous} #{devtoolsController.pagination.pageSize}" rendered="#{devtoolsController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{devtoolsController.next}" value="#{bundle.Next} #{devtoolsController.pagination.pageSize}" rendered="#{devtoolsController.pagination.hasNextPage}"/>&nbsp;
+                    <br/>
+                    
+                    <h:panelGroup rendered="#{request.getRemoteUser() != null}">
+                        <h:button class="btn btn-success" outcome="/admin/account.xhtml" value="My Account" style="margin-right: 1%"/>
+                        <h:commandButton class="btn btn-success" action="#{devtoolsController.logout()}" value="Logout"/>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{request.getRemoteUser() == null}">
+                        <h:button class="btn btn-success" outcome="/admin/account.xhtml" value="Login" style="margin-right: 1%"/>
+                        <h:button class="btn btn-success" outcome="/users/Create.xhtml" value="Register"/>
+                    </h:panelGroup>
+                        
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h:form>
+                        <div class="row">
+                            <h:selectOneMenu binding="#{type}">
+                                <f:selectItem itemLabel="All" itemValue="" />
+                                <f:selectItem itemLabel="IDE" itemValue="ide" />
+                                <f:selectItem itemLabel="Api" itemValue="api" />
+                                <f:selectItem itemLabel="SDK" itemValue="sdk" />
+                                <f:selectItem itemLabel="Plugin" itemValue="plugins" />
+                                <f:selectItem itemLabel="Framework" itemValue="framework" />
+                            </h:selectOneMenu>  
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <h:inputText class="form-control" value="Search for..." id="search" binding="#{input}"/>
+                                    <span class="input-group-btn">
+                                        <h:commandButton class="btn btn-default" action="#{devtoolsController.Preparesearch(input.value,type.value)}" value="Search" type="submit"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                    
+                    <br/>
                     
                     <div class="row">
-                        <c:forEach items="#{devtoolsController.all()}" var="item">
+                        <c:forEach items="#{devtoolsController.search()}" var="item">
                             <div class="col-sm-6 col-md-4">
                               <div class="thumbnail" style="display:block">
                                   <img src="#{item.getImg()}" alt="..."></img>

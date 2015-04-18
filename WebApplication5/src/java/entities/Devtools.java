@@ -45,6 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Devtools.findByCreatedAt", query = "SELECT d FROM Devtools d WHERE d.createdAt = :createdAt"),
     @NamedQuery(name = "Devtools.findByUpdatedAt", query = "SELECT d FROM Devtools d WHERE d.updatedAt = :updatedAt"),
     @NamedQuery(name = "Devtools.findByUrl", query = "SELECT d FROM Devtools d WHERE d.url = :url"),
+    @NamedQuery(name = "Devtools.findLike", query = "SELECT d FROM Devtools d WHERE d.name LIKE :search"),
+    @NamedQuery(name = "Devtools.findLikeWithType", query = "SELECT d FROM Devtools d WHERE d.name LIKE :search AND d.type = :type"),
     @NamedQuery(name = "Devtools.findByImagePath", query = "SELECT d FROM Devtools d WHERE d.imagePath = :imagePath")})
 public class Devtools implements Serializable {
     public enum Type {

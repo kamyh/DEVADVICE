@@ -1,23 +1,29 @@
 package jsf_pages;
 
 import entities.Devtools;
+import java.io.IOException;
 import jsf_pages.util.JsfUtil;
 import jsf_pages.util.PaginationHelper;
 import session.DevtoolsFacade;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean(name = "devtoolsController")
 @SessionScoped
@@ -47,6 +53,70 @@ public class DevtoolsController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
+    }
+    
+    public void Preparesearch(String input, String type)
+    {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        
+        String[] lInput = input.split(" ");
+        
+        String params = "";
+        
+        for(String param:lInput)
+        {
+            params += param + "+";
+        }
+        
+        params = params.substring(0, params.length()-1);
+        
+        try {
+            context.redirect(context.getRequestContextPath() + "/devtools/search.xhtml?search=" + params + "&type=" + type);
+        } catch (IOException ex) {
+            Logger.getLogger(DevtoolsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public List<Devtools> search()
+    {
+        Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String param = params.get("search");
+        String type = params.get("type");
+        
+        if(type == null)
+        {
+            return getFacade().findLike("");
+        }
+        
+        if(type != "")
+        {
+            if(param == null)
+            {
+                return getFacade().findLikeWithType("",type);
+            }
+
+            return getFacade().findLikeWithType(param,type);
+        }
+        
+        if(param == null)
+         {
+             return getFacade().findLike("");
+         }
+
+         return getFacade().findLike(param);
+    }
+    
+    public void logout()
+    {
+        ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+        
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+     
+        try {
+            context.redirect(context.getRequestContextPath() + "/devtools/search.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(DevtoolsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private DevtoolsFacade getFacade() {

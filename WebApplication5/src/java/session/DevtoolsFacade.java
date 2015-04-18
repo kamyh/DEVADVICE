@@ -35,4 +35,17 @@ public class DevtoolsFacade extends AbstractFacade<Devtools> {
         qry.setParameter("id", id);
         return qry.getResultList();
     }
+
+    public List<Devtools> findLike(String param) {
+        Query qry = em.createNamedQuery("Devtools.findLike");
+        qry.setParameter("search", '%' + param + '%');
+        return qry.getResultList();
+    }
+    
+        public List<Devtools> findLikeWithType(String param, String type) {
+        Query qry = em.createNamedQuery("Devtools.findLikeWithType");
+        qry.setParameter("search", '%' + param + '%');
+        qry.setParameter("type", type);
+        return qry.getResultList();
+    }
 }
