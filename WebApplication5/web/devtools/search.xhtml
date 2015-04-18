@@ -19,12 +19,12 @@
                     <br/>
                     
                     <h:panelGroup rendered="#{request.getRemoteUser() != null}">
-                        <h:button class="btn btn-success" outcome="/admin/account.xhtml" value="My Account" style="margin-right: 1%"/>
-                        <h:commandButton class="btn btn-success" action="#{devtoolsController.logout()}" value="Logout"/>
+                        <h:button id="devtools_button_account" class="btn btn-success" outcome="/admin/account.xhtml" value="My Account" style="margin-right: 1%"/>
+                        <h:commandButton id="devtools_button_account_" class="btn btn-success" action="#{devtoolsController.logout()}" value="Logout"/>
                     </h:panelGroup>
                     <h:panelGroup rendered="#{request.getRemoteUser() == null}">
-                        <h:button class="btn btn-success" outcome="/admin/account.xhtml" value="Login" style="margin-right: 1%"/>
-                        <h:button class="btn btn-success" outcome="/users/Create.xhtml" value="Register"/>
+                        <h:button id="devtools_button_login" class="btn btn-success" outcome="/admin/account.xhtml" value="Login" style="margin-right: 1%"/>
+                        <h:button id="devtools_button_register" class="btn btn-success" outcome="/users/Create.xhtml" value="Register"/>
                     </h:panelGroup>
                         
                     <br/>
@@ -32,7 +32,7 @@
                     <br/>
                     <h:form>
                         <div class="row">
-                            <h:selectOneMenu binding="#{type}">
+                            <h:selectOneMenu id="devtools_select_type_search" binding="#{type}">
                                 <f:selectItem itemLabel="All" itemValue="" />
                                 <f:selectItem itemLabel="IDE" itemValue="ide" />
                                 <f:selectItem itemLabel="Api" itemValue="api" />
@@ -42,9 +42,9 @@
                             </h:selectOneMenu>  
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <h:inputText class="form-control" value="Search for..." id="search" binding="#{input}"/>
+                                    <h:inputText id="devtools_input_search" class="form-control" value="Search for..." binding="#{input}" />
                                     <span class="input-group-btn">
-                                        <h:commandButton class="btn btn-default" action="#{devtoolsController.Preparesearch(input.value,type.value)}" value="Search" type="submit"/>
+                                        <h:commandButton id="devtools_button_search" class="btn btn-default" action="#{devtoolsController.Preparesearch(input.value,type.value)}" value="Search" type="submit"/>
                                     </span>
                                 </div>
                             </div>
@@ -65,13 +65,10 @@
                                     <h:outputLabel value=""></h:outputLabel><h:outputText value="#{item.url}" style="color:gray;margin-left: 8px"/></p>
                                     <p><h:outputText value="#{item.description}"/></p>
                                     <p>
-                                        <h:button class="btn btn-success" outcome="/comments/List.xhtml?id_dev_tool=#{item.id}" value="Comments"/>
+                                        <h:button id="devtools_button_comments_#{item.id}" class="btn btn-success" outcome="/comments/List.xhtml?id_dev_tool=#{item.id}" value="Comments"/>
 
-                                        <h:commandLink class="btn btn-success" action="#{devtoolsController.prepareView(item.id)}" value="#{bundle.ListDevtoolsViewLink}"/>
-                                        <h:outputText value=" "/>
-                                        <h:commandLink class="btn btn-success" action="#{devtoolsController.prepareEdit}" value="#{bundle.ListDevtoolsEditLink}"/>
-                                        <h:outputText value=" "/>
-                                        <h:commandLink class="btn btn-danger" action="#{devtoolsController.destroy}" value="#{bundle.ListDevtoolsDestroyLink}"/>
+                                        <h:commandLink id="devtools_button_view_#{item.id}" class="btn btn-success" action="#{devtoolsController.prepareView(item.id)}" value="#{bundle.ListDevtoolsViewLink}"/>
+
                                     </p>
                                 </div>
                               </div>
@@ -80,10 +77,9 @@
                     </div>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{devtoolsController.prepareCreate}" value="#{bundle.ListDevtoolsCreateLink}"/>
+                <h:commandLink id="devtools_button_create" action="#{devtoolsController.prepareCreate}" value="#{bundle.ListDevtoolsCreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListDevtoolsIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

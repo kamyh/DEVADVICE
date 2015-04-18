@@ -2,6 +2,7 @@ package jsf_pages;
 
 import entities.Comments;
 import entities.Devtools;
+import java.io.IOException;
 import jsf_pages.util.JsfUtil;
 import jsf_pages.util.PaginationHelper;
 import session.CommentsFacade;
@@ -9,10 +10,13 @@ import session.CommentsFacade;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
@@ -88,8 +92,17 @@ public class CommentsController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CommentsCreated"));
-            return prepareCreate(current.getId());
+            //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CommentsCreated"));
+            //return prepareCreate(current.getId());
+            
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+     
+            try {
+                context.redirect(context.getRequestContextPath() + "/comments/List.xhtml?id_dev_tool="+current.getIdDevtool().getId());
+            } catch (IOException ex) {
+                Logger.getLogger(DevtoolsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return "";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

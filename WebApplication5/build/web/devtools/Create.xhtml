@@ -17,23 +17,18 @@
                 </div>
                 <div class="panel-body">
                     <h:form>
-                        
-                        
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Id</span>
-                                    <h:inputText id="id" class="form-control" value="#{devtoolsController.selected.id}" title="#{devtools.CreateDevtoolsTitle_id}" required="true" requiredMessage="#{devtools.CreateDevtoolsRequiredMessage_id}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
                     
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Type</span>
-                                    <h:inputText id="type" class="form-control" value="#{devtoolsController.selected.type}" title="#{devtools.CreateDevtoolsTitle_type}" />
+                                    <h:selectOneMenu id="devtools_select_type" class="form-control" value="#{devtoolsController.selected.type}" title="#{devtools.CreateDevtoolsTitle_type}" >
+                                        <f:selectItem id="devtools_select_type_ide" itemLabel="IDE" itemValue="ide" />
+                                        <f:selectItem id="devtools_select_type_api" itemLabel="Api" itemValue="api" />
+                                        <f:selectItem id="devtools_select_type_sdk" itemLabel="SDK" itemValue="sdk" />
+                                        <f:selectItem id="devtools_select_type_plugins" itemLabel="Plugin" itemValue="plugins" />
+                                        <f:selectItem id="devtools_select_type_framework" itemLabel="Framework" itemValue="framework" />
+                                    </h:selectOneMenu>
                             </div>
                         </div>
                     </div>
@@ -43,7 +38,7 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Rank</span>
-                                    <h:inputText id="rank" class="form-control" value="#{devtoolsController.selected.rank}" title="#{devtools.CreateDevtoolsTitle_rank}" />
+                                    <h:inputText id="devtools_input_rank" class="form-control" value="#{devtoolsController.selected.rank}" title="#{devtools.CreateDevtoolsTitle_rank}" />
                             </div>
                         </div>
                     </div>
@@ -53,7 +48,7 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Description</span>
-                                    <h:inputTextarea class="form-control" rows="4" cols="30" id="description" value="#{devtoolsController.selected.description}" title="#{devtools.CreateDevtoolsTitle_description}" />
+                                    <h:inputTextarea id="devtools_input_description" class="form-control" rows="4" cols="30" value="#{devtoolsController.selected.description}" title="#{devtools.CreateDevtoolsTitle_description}" />
                             </div>
                         </div>
                     </div>
@@ -63,7 +58,7 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Url</span>
-                                    <h:inputText class="form-control" id="url" value="#{devtoolsController.selected.url}" title="#{devtools.CreateDevtoolsTitle_url}" />
+                                    <h:inputText id="devtools_input_url" class="form-control" value="#{devtoolsController.selected.url}" title="#{devtools.CreateDevtoolsTitle_url}" />
                             </div>
                         </div>
                     </div>
@@ -73,21 +68,20 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Name</span>
-                                    <h:inputText class="form-control" id="name" value="#{devtoolsController.selected.name}" title="#{devtools.CreateDevtoolsTitle_name}" />
+                                    <h:inputText class="form-control" id="devtools_input_name" value="#{devtoolsController.selected.name}" title="#{devtools.CreateDevtoolsTitle_name}" />
                             </div>
                         </div>
                     </div>
                     <br/>
                     <br/>
                 
-                    <h:commandLink action="#{devtoolsController.create}" styleClass="btn btn-primary">
+                    <h:commandLink id="devtools_link_create" action="#{devtoolsController.create}" styleClass="btn btn-primary">
                         <i class="icon-search"></i> #{bundle.CreateDevtoolsSaveLink}
                     </h:commandLink>
                     <br />
                     <br />
-                    <h:commandLink action="#{devtoolsController.prepareList}" value="#{bundle.CreateDevtoolsShowAllLink}" immediate="true" styleClass="btn btn-primary"/>
 
-                    <h:link outcome="/index" value="#{bundle.CreateDevtoolsIndexLink}" styleClass="btn btn-primary" style="margin-left: 2%"/>
+                    <h:link id="devtools_button_back_index" outcome="/devtools/search.xhtml" value="#{bundle.CreateDevtoolsIndexLink}" styleClass="btn btn-primary"/>
                 </h:form>
                 </div>
             </div>

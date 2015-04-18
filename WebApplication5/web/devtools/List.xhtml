@@ -17,11 +17,7 @@
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListDevtoolsEmpty}" rendered="#{devtoolsController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{devtoolsController.items.rowCount > 0}">
-                    <h:outputText value="#{devtoolsController.pagination.pageFirstItem + 1}..#{devtoolsController.pagination.pageLastItem + 1}/#{devtoolsController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{devtoolsController.previous}" value="#{bundle.Previous} #{devtoolsController.pagination.pageSize}" rendered="#{devtoolsController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{devtoolsController.next}" value="#{bundle.Next} #{devtoolsController.pagination.pageSize}" rendered="#{devtoolsController.pagination.hasNextPage}"/>&nbsp;
                     <div class="row">
-                        #{usersController.getSelected(request.getRemoteUser())}
                         <c:forEach items="#{devtoolsController.getItemsAvailable(usersController.getSelected(request.getRemoteUser()).id)}" var="item">
                             <div class="col-sm-6 col-md-4">
                               <div class="thumbnail" style="display:block">
@@ -33,11 +29,11 @@
                                     <h:outputLabel value=""></h:outputLabel><h:outputText value="#{item.url}" style="color:gray;margin-left: 8px"/></p>
                                     <p><h:outputText value="#{item.description}"/></p>
                                     <p>
-                                        <h:commandLink class="btn btn-success" action="#{devtoolsController.prepareView(item.id)}" value="#{bundle.ListDevtoolsViewLink}"/>
+                                        <h:commandLink id="devtools_button_view_#{item.id}" class="btn btn-success" action="#{devtoolsController.prepareView(item.id)}" value="#{bundle.ListDevtoolsViewLink}"/>
                                         <h:outputText value=" "/>
-                                        <h:commandLink class="btn btn-success" action="#{devtoolsController.prepareEdit}" value="#{bundle.ListDevtoolsEditLink}"/>
+                                        <h:commandLink id="devtools_button_edit_#{item.id}" class="btn btn-success" action="#{devtoolsController.prepareEdit}" value="#{bundle.ListDevtoolsEditLink}"/>
                                         <h:outputText value=" "/>
-                                        <h:commandLink class="btn btn-danger" action="#{devtoolsController.destroy}" value="#{bundle.ListDevtoolsDestroyLink}"/>
+                                        <h:commandLink id="devtools_button_delete_#{item.id}" class="btn btn-danger" action="#{devtoolsController.destroy}" value="#{bundle.ListDevtoolsDestroyLink}"/>
                                     </p>
                                 </div>
                               </div>
@@ -46,10 +42,10 @@
                     </div>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{devtoolsController.prepareCreate}" value="#{bundle.ListDevtoolsCreateLink}"/>
+                <h:commandLink id="devtools_button_new" action="#{devtoolsController.prepareCreate}" value="#{bundle.ListDevtoolsCreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListDevtoolsIndexLink}"/>
+                <h:link id="devtools_button_back_index" outcome="/devtools/search.xhtml" value="#{bundle.ListDevtoolsIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

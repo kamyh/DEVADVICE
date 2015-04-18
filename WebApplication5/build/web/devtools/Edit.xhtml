@@ -17,26 +17,20 @@
                 <h:panelGrid columns="2">
 
                    <h:outputLabel value="#{bundle.EditDevtoolsLabel_type}" for="type" />
-                    <h:inputText id="type" value="#{devtoolsController.selected.type}" title="#{bundle.EditDevtoolsTitle_type}" />
+                    <h:inputText id="devtools_select_type" value="#{devtoolsController.selected.type}" title="#{bundle.EditDevtoolsTitle_type}" />
                     <h:outputLabel value="#{bundle.EditDevtoolsLabel_rank}" for="rank" />
-                    <h:inputText id="rank" value="#{devtoolsController.selected.rank}" title="#{bundle.EditDevtoolsTitle_rank}" />
+                    <h:inputText id="devtools_input_rank" value="#{devtoolsController.selected.rank}" title="#{bundle.EditDevtoolsTitle_rank}" />
                     <h:outputLabel value="#{bundle.EditDevtoolsLabel_description}" for="description" />
-                    <h:inputTextarea rows="4" cols="30" id="description" value="#{devtoolsController.selected.description}" title="#{bundle.EditDevtoolsTitle_description}" />
+                    <h:inputTextarea rows="4" cols="30" id="devtools_input_description" value="#{devtoolsController.selected.description}" title="#{bundle.EditDevtoolsTitle_description}" />
                     <h:outputLabel value="#{bundle.EditDevtoolsLabel_url}" for="url" />
-                    <h:inputText id="url" value="#{devtoolsController.selected.url}" title="#{bundle.EditDevtoolsTitle_url}" />
-                    <h:outputLabel value="#{bundle.EditDevtoolsLabel_imagePath}" for="imagePath" />
-                    <h:inputText id="imagePath" value="#{devtoolsController.selected.imagePath}" title="#{bundle.EditDevtoolsTitle_imagePath}" />
+                    <h:inputText id="devtools_input_url" value="#{devtoolsController.selected.url}" title="#{bundle.EditDevtoolsTitle_url}" />
                     
                 </h:panelGrid>
-                <h:commandLink action="#{devtoolsController.update}" value="#{bundle.EditDevtoolsSaveLink}"/>
+                <h:commandLink id="devtools_button_save" action="#{devtoolsController.update}" value="#{bundle.EditDevtoolsSaveLink}"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditDevtoolsViewLink}"/>
-                <br />
-                <h:commandLink action="#{devtoolsController.prepareList}" value="#{bundle.EditDevtoolsShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditDevtoolsIndexLink}" />
+                
+                <h:link id="devtools_button_back_index" outcome="/devtools/search.xhtml" value="#{bundle.EditDevtoolsIndexLink}" />
             </h:form>
         </ui:define>
     </ui:composition>

@@ -26,10 +26,10 @@
                             </ul>
                         </h:panelGroup>
                         <br />
-                        <h:button class="btn btn-success" outcome="/comments/Create.xhtml?id_dev_tool=#{param['id_dev_tool']}" value="Comments"/>
+                        <h:button id="comments_button_create" class="btn btn-success" outcome="/comments/Create.xhtml?id_dev_tool=#{param['id_dev_tool']}" value="Comments"/>
                         <br />
                         <br />
-                        <h:link outcome="/index" value="#{bundle.ListCommentsIndexLink}"/>
+                        <h:link id="comments_link_back_index" outcome="/index" value="#{bundle.ListCommentsIndexLink}"/>
                     </h:form>
                 
         </ui:define>

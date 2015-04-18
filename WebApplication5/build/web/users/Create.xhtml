@@ -25,13 +25,10 @@
                     <h:inputText id="lastname" value="#{usersController.selected.lastname}" title="#{bundlekj.CreateUsersTitle_lastname}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_lastname}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{usersController.create}" value="#{bundlekj.CreateUsersSaveLink}" />
+                <h:commandLink id="users_button_save" action="#{usersController.create}" value="#{bundlekj.CreateUsersSaveLink}" />
                 <br />
                 <br />
-                <h:commandLink action="#{usersController.prepareList}" value="#{bundlekj.CreateUsersShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundlekj.CreateUsersIndexLink}"/>
+                <h:link id="users_button_back_index" outcome="/devtools/search.xhtml" value="#{bundlekj.CreateUsersIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -12,32 +12,26 @@
             <h:outputText value="#{bundle.CreateCommentsTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-                    <h:panelGroup rendered="#{param['id_dev_tool'] == null}">
-                        Forbidden, You cannot acces that page !
-                    </h:panelGroup>
+
                     <h:panelGroup id="messagePanel" layout="block"  rendered="#{param['id_dev_tool'] != null}">
                         <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                     </h:panelGroup>
 
-                    <h:panelGroup  rendered="#{param['id_dev_tool'] != null}">
+                    <h:panelGroup>
                     <h:form>
                         <h:panelGrid columns="2">
                            <h:outputLabel value="#{bundle.CreateCommentsLabel_text}" for="text" />
-                            <h:inputTextarea rows="4" cols="30" id="text" value="#{commentsController.selected.text}" title="#{bundle.CreateCommentsTitle_text}" />
+                            <h:inputTextarea rows="4" cols="30" id="comments_inputarea_text" value="#{commentsController.selected.text}" title="#{bundle.CreateCommentsTitle_text}" />
                             #{commentsController.selected.setIdUserF(3)}
                             #{commentsController.selected.setIdDevtoolF(param['id_dev_tool'])}
                         </h:panelGrid>
                         <br />
-                        <h:commandLink action="#{commentsController.create}" value="#{bundle.CreateCommentsSaveLink}" />
+                        <h:commandLink id="comments_link_save" action="#{commentsController.create}" value="#{bundle.CreateCommentsSaveLink}" />
                         <br />
                         <br />
-                        <h:commandLink action="#{commentsController.prepareList}" value="#{bundle.CreateCommentsShowAllLink}" immediate="true"/>
-                        <br />
-                        <br />
-                        <h:link outcome="/index" value="#{bundle.CreateCommentsIndexLink}"/>
+                        <h:link id="comments_link_back_index" outcome="/devtools/search.xhtml" value="#{bundle.CreateCommentsIndexLink}"/>
                     </h:form>
                     </h:panelGroup>
          </ui:define>
     </ui:composition>
-
 </html>

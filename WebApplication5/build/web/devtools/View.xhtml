@@ -38,18 +38,10 @@
                     <h:outputText value="#{bundle.ViewDevtoolsLabel_iduser}"/>
                     <h:outputText value="#{devtoolsController.selected.idUser}" title="#{bundle.ViewDevtoolsTitle_iduser}"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{devtoolsController.destroyAndView}" value="#{bundle.ViewDevtoolsDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewDevtoolsEditLink}"/>
-                <br />
-                <h:commandLink action="#{devtoolsController.prepareCreate}" value="#{bundle.ViewDevtoolsCreateLink}" />
-                <br />
-                <h:commandLink action="#{devtoolsController.prepareList}" value="#{bundle.ViewDevtoolsShowAllLink}"/>
+                
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewDevtoolsIndexLink}"/>
+                <h:link id="devtools_button_back_index" outcome="/devtools/search.xhtml" value="#{bundle.ViewDevtoolsIndexLink}"/>
 
             </h:form>
         </ui:define>
