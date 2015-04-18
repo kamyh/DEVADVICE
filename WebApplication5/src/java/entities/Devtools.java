@@ -47,9 +47,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Devtools.findByUrl", query = "SELECT d FROM Devtools d WHERE d.url = :url"),
     @NamedQuery(name = "Devtools.findByImagePath", query = "SELECT d FROM Devtools d WHERE d.imagePath = :imagePath")})
 public class Devtools implements Serializable {
+    public enum Type {
+        SDK,
+        API,
+        IDE,
+        FRAMEWORK,
+        PLUGINS;	
+      }
     
-    @Column(name = "name")
-    private String name;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,12 +87,29 @@ public class Devtools implements Serializable {
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     @ManyToOne
     private Users idUser;
+    @Column(name = "name")
+    private String name;
 
     public Devtools() {
     }
 
     public Devtools(Integer id) {
         this.id = id;
+    }
+    
+    public String getImg()
+    {
+        String urlImg = "";
+        
+        switch(this.type) {
+            case "sdk":  urlImg = "http://blog.generalassemb.ly/blog/wp-content/uploads/2014/07/clean-code.jpg";  break;
+            case "api":  urlImg = "http://developer.quantcast.com/files/API_PAGE_CLOUD_-_crop.png";  break;
+            case "ide":  urlImg = "http://danston.com/portal/components/com_virtuemart/shop_image/product/Cable_Ide_133_4f0310cf51dd5.jpg";  break;
+            case "framework":  urlImg = "http://images.atelier.net/sites/default/files/imagecache/scale_crop_587_310/articles/423600/atelier-nouvelle-programmation-informatique.jpg";  break;
+            case "plugins":  urlImg = "http://www.wpmayor.com/wp-content/uploads/wordpress-plugins2.jpg";  break;
+          }
+        
+        return urlImg;
     }
 
     public Integer getId() {

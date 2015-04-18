@@ -84,6 +84,10 @@ public class Users implements Serializable {
         this.lastname = lastname;
     }
 
+    public Users(String userName) {
+        
+    }
+
     public Integer getId() {
         return id;
     }

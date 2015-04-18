@@ -8,5 +8,13 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/backup_devtools</base-name>
+            <var>backup_devtools</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundlekj</base-name>
+            <var>bundlekj</var>
+        </resource-bundle>
     </application>
 </faces-config>

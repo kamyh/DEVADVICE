@@ -40,9 +40,22 @@ public class DevtoolsController implements Serializable {
         }
         return current;
     }
+    
+    public Devtools getSelected(int id) {
+        if (current == null) {
+            current = new Devtools(id);
+            selectedItemIndex = -1;
+        }
+        return current;
+    }
 
     private DevtoolsFacade getFacade() {
         return ejbFacade;
+    }
+    
+    public void openComments(int id)
+    {
+        
     }
 
     public PaginationHelper getPagination() {
@@ -70,6 +83,12 @@ public class DevtoolsController implements Serializable {
 
     public String prepareView() {
         current = (Devtools) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+    
+    public String prepareView(int id) {
+        current = (Devtools) DevtoolsController.this.getSelected(id);
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
@@ -187,6 +206,10 @@ public class DevtoolsController implements Serializable {
     
     public List<Devtools> getItemsAvailable(int userId) {
         return ejbFacade.findOwn(userId);
+    }
+    
+    public List<Devtools> all() {
+        return ejbFacade.findAll();
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {

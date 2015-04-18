@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{backup_devtools.ViewDevtoolsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_img}"/>
+                    <h:outputText value="#{devtoolsController.selected.img}" title="#{backup_devtools.ViewDevtoolsTitle_img}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_id}"/>
+                    <h:outputText value="#{devtoolsController.selected.id}" title="#{backup_devtools.ViewDevtoolsTitle_id}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_type}"/>
+                    <h:outputText value="#{devtoolsController.selected.type}" title="#{backup_devtools.ViewDevtoolsTitle_type}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_rank}"/>
+                    <h:outputText value="#{devtoolsController.selected.rank}" title="#{backup_devtools.ViewDevtoolsTitle_rank}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_createdAt}"/>
+                    <h:outputText value="#{devtoolsController.selected.createdAt}" title="#{backup_devtools.ViewDevtoolsTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_updatedAt}"/>
+                    <h:outputText value="#{devtoolsController.selected.updatedAt}" title="#{backup_devtools.ViewDevtoolsTitle_updatedAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_description}"/>
+                    <h:outputText value="#{devtoolsController.selected.description}" title="#{backup_devtools.ViewDevtoolsTitle_description}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_url}"/>
+                    <h:outputText value="#{devtoolsController.selected.url}" title="#{backup_devtools.ViewDevtoolsTitle_url}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_imagePath}"/>
+                    <h:outputText value="#{devtoolsController.selected.imagePath}" title="#{backup_devtools.ViewDevtoolsTitle_imagePath}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_idUser}"/>
+                    <h:outputText value="#{devtoolsController.selected.idUser}" title="#{backup_devtools.ViewDevtoolsTitle_idUser}"/>
+                    <h:outputText value="#{backup_devtools.ViewDevtoolsLabel_name}"/>
+                    <h:outputText value="#{devtoolsController.selected.name}" title="#{backup_devtools.ViewDevtoolsTitle_name}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{devtoolsController.destroyAndView}" value="#{backup_devtools.ViewDevtoolsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{backup_devtools.ViewDevtoolsEditLink}"/>
+                <br />
+                <h:commandLink action="#{devtoolsController.prepareCreate}" value="#{backup_devtools.ViewDevtoolsCreateLink}" />
+                <br />
+                <h:commandLink action="#{devtoolsController.prepareList}" value="#{backup_devtools.ViewDevtoolsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{backup_devtools.ViewDevtoolsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

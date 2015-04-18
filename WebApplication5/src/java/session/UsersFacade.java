@@ -9,6 +9,7 @@ import entities.Users;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +27,13 @@ public class UsersFacade extends AbstractFacade<Users> {
 
     public UsersFacade() {
         super(Users.class);
+    }
+    
+    public Users findByName(String name)
+    {
+        Query qry = em.createNamedQuery("Users.findByLoginName");
+        qry.setParameter("loginName", name);
+        return (Users)qry.getResultList().get(0);
     }
     
 }

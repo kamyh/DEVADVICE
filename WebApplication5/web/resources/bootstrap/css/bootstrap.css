@@ -267,11 +267,11 @@ th {
 @font-face {
   font-family: 'Glyphicons Halflings';
 
-    src: url("#{resource['bootstrap/fonts/glyphicons-halflings-regular.eot']}");
-    src: url("#{resource['bootstrap/fonts/glyphicons-halflings-regular.eot']}&#iefix") format('embedded-opentype'),
-      url("#{resource['bootstrap/fonts/glyphicons-halflings-regular.woff']}") format('woff'),
-      url("#{resource['bootstrap/fonts/glyphicons-halflings-regular.ttf']}") format('truetype'),
-      url("#{resource['bootstrap/fonts/glyphicons-halflings-regular.svg']}#glyphicons_halflingsregular") format('svg');
+    src: url("/WebApplication5/javax.faces.resource/bootstrap/fonts/glyphicons-halflings-regular.eot.xhtml");
+    src: url("/WebApplication5/javax.faces.resource/bootstrap/fonts/glyphicons-halflings-regular.eot.xhtml&#iefix") format('embedded-opentype'),
+      url("/WebApplication5/javax.faces.resource/bootstrap/fonts/glyphicons-halflings-regular.woff.xhtml") format('woff'),
+      url("/WebApplication5/javax.faces.resource/bootstrap/fonts/glyphicons-halflings-regular.ttf.xhtml") format('truetype'),
+      url("/WebApplication5/javax.faces.resource/bootstrap/fonts/glyphicons-halflings-regular.svg.xhtml#glyphicons_halflingsregular") format('svg');
 }
 .glyphicon {
   position: relative;
@@ -1063,13 +1063,15 @@ th {
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
-          box-sizing: border-box;
+          
+  /* box-sizing: border-box; */
 }
 *:before,
 *:after {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
-          box-sizing: border-box;
+          
+  /* box-sizing: border-box; */
 }
 html {
   font-size: 10px;
@@ -1079,7 +1081,7 @@ html {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  line-height: 1.42857143;
+  /* line-height: 1.42857143; */
   color: #333;
   background-color: #fff;
 }

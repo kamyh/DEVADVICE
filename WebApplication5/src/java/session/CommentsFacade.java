@@ -6,9 +6,12 @@
 package session;
 
 import entities.Comments;
+import entities.Devtools;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +29,18 @@ public class CommentsFacade extends AbstractFacade<Comments> {
 
     public CommentsFacade() {
         super(Comments.class);
+    }
+    
+    public List<Comments> findOwn(int id) {
+        Query qry = em.createNamedQuery("Comments.findByIdDevtools");
+        qry.setParameter("id", id);
+        return qry.getResultList();
+    }
+
+    public Devtools findDev(int idDevTool) {
+        Query qry = em.createNamedQuery("Devtools.findById");
+        qry.setParameter("id", idDevTool);
+        return (Devtools)qry.getResultList().get(0);
     }
     
 }

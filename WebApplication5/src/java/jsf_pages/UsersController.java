@@ -1,6 +1,7 @@
 package jsf_pages;
 
 import entities.Users;
+import entities.UsersGroups;
 import jsf_pages.util.JsfUtil;
 import jsf_pages.util.PaginationHelper;
 import session.UsersFacade;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -26,18 +28,31 @@ public class UsersController implements Serializable {
     private DataModel items = null;
     @EJB
     private session.UsersFacade ejbFacade;
+    @ManagedProperty(value = "#{usersGroupsController}")
+    private UsersGroupsController usersGroupsController;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+        public UsersController() {
 
-    public UsersController() {
     }
 
+    public void setUsersGroupsController(UsersGroupsController uGC)
+    {
+        this.usersGroupsController = uGC;
+    }
+    
     public Users getSelected() {
         if (current == null) {
             current = new Users();
             selectedItemIndex = -1;
         }
         return current;
+    }
+    
+    public Users getSelected(String name)
+    {
+        return ejbFacade.findByName(name);
     }
 
     private UsersFacade getFacade() {
@@ -82,10 +97,18 @@ public class UsersController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsersCreated"));
+            UsersGroups uG = new UsersGroups();
+            
+            uG.setGroupName("admins");
+            uG.setLoginName(current.getLoginName());
+            
+            usersGroupsController.create(uG);
+            
+            
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundlekj").getString("UsersCreated"));
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundlekj").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -99,10 +122,10 @@ public class UsersController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsersUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundlekj").getString("UsersUpdated"));
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundlekj").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -132,9 +155,9 @@ public class UsersController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsersDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundlekj").getString("UsersDeleted"));
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundlekj").getString("PersistenceErrorOccured"));
         }
     }
 

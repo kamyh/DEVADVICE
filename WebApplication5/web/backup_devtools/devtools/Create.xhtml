@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{backup_devtools.CreateDevtoolsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_img}" for="img" />
+                    <h:inputText id="img" value="#{devtoolsController.selected.img}" title="#{backup_devtools.CreateDevtoolsTitle_img}" />
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{devtoolsController.selected.id}" title="#{backup_devtools.CreateDevtoolsTitle_id}" required="true" requiredMessage="#{backup_devtools.CreateDevtoolsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{devtoolsController.selected.type}" title="#{backup_devtools.CreateDevtoolsTitle_type}" />
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_rank}" for="rank" />
+                    <h:inputText id="rank" value="#{devtoolsController.selected.rank}" title="#{backup_devtools.CreateDevtoolsTitle_rank}" />
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{devtoolsController.selected.createdAt}" title="#{backup_devtools.CreateDevtoolsTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_updatedAt}" for="updatedAt" />
+                    <h:inputText id="updatedAt" value="#{devtoolsController.selected.updatedAt}" title="#{backup_devtools.CreateDevtoolsTitle_updatedAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_description}" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{devtoolsController.selected.description}" title="#{backup_devtools.CreateDevtoolsTitle_description}" />
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{devtoolsController.selected.url}" title="#{backup_devtools.CreateDevtoolsTitle_url}" />
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_imagePath}" for="imagePath" />
+                    <h:inputText id="imagePath" value="#{devtoolsController.selected.imagePath}" title="#{backup_devtools.CreateDevtoolsTitle_imagePath}" />
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_idUser}" for="idUser" />
+                    <h:selectOneMenu id="idUser" value="#{devtoolsController.selected.idUser}" title="#{backup_devtools.CreateDevtoolsTitle_idUser}" >
+                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{backup_devtools.CreateDevtoolsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{devtoolsController.selected.name}" title="#{backup_devtools.CreateDevtoolsTitle_name}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{devtoolsController.create}" value="#{backup_devtools.CreateDevtoolsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{devtoolsController.prepareList}" value="#{backup_devtools.CreateDevtoolsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{backup_devtools.CreateDevtoolsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

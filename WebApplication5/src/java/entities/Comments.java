@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Comments.findAll", query = "SELECT c FROM Comments c"),
+    @NamedQuery(name = "Comments.findByIdDevtools", query = "SELECT c FROM Comments c WHERE c.idDevtool.id = :id"),
     @NamedQuery(name = "Comments.findById", query = "SELECT c FROM Comments c WHERE c.id = :id")})
 public class Comments implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -52,9 +53,7 @@ public class Comments implements Serializable {
     public Comments() {
     }
 
-    public Comments(Integer id) {
-        this.id = id;
-    }
+
 
     public Integer getId() {
         return id;
@@ -76,8 +75,12 @@ public class Comments implements Serializable {
         return idDevtool;
     }
 
-    public void setIdDevtool(Devtools idDevtool) {
-        this.idDevtool = idDevtool;
+    public void setIdDevtoolF(int idDevtool) {
+        this.idDevtool = new Devtools(idDevtool);
+    }
+    
+    public void setIdUserF(int idUser) {
+        this.idUser = new Users(idUser);
     }
 
     public Users getIdUser() {

@@ -16,30 +16,17 @@
             <h:form>
                 <h:panelGrid columns="2">
 
-                    <h:outputLabel value="#{bundle.EditDevtoolsLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{devtoolsController.selected.id}" title="#{bundle.EditDevtoolsTitle_id}" required="true" requiredMessage="#{bundle.EditDevtoolsRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditDevtoolsLabel_type}" for="type" />
+                   <h:outputLabel value="#{bundle.EditDevtoolsLabel_type}" for="type" />
                     <h:inputText id="type" value="#{devtoolsController.selected.type}" title="#{bundle.EditDevtoolsTitle_type}" />
                     <h:outputLabel value="#{bundle.EditDevtoolsLabel_rank}" for="rank" />
                     <h:inputText id="rank" value="#{devtoolsController.selected.rank}" title="#{bundle.EditDevtoolsTitle_rank}" />
-                    <h:outputLabel value="#{bundle.EditDevtoolsLabel_createdAt}" for="createdAt" />
-                    <h:inputText id="createdAt" value="#{devtoolsController.selected.createdAt}" title="#{bundle.EditDevtoolsTitle_createdAt}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.EditDevtoolsLabel_updatedAt}" for="updatedAt" />
-                    <h:inputText id="updatedAt" value="#{devtoolsController.selected.updatedAt}" title="#{bundle.EditDevtoolsTitle_updatedAt}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
                     <h:outputLabel value="#{bundle.EditDevtoolsLabel_description}" for="description" />
                     <h:inputTextarea rows="4" cols="30" id="description" value="#{devtoolsController.selected.description}" title="#{bundle.EditDevtoolsTitle_description}" />
                     <h:outputLabel value="#{bundle.EditDevtoolsLabel_url}" for="url" />
                     <h:inputText id="url" value="#{devtoolsController.selected.url}" title="#{bundle.EditDevtoolsTitle_url}" />
                     <h:outputLabel value="#{bundle.EditDevtoolsLabel_imagePath}" for="imagePath" />
                     <h:inputText id="imagePath" value="#{devtoolsController.selected.imagePath}" title="#{bundle.EditDevtoolsTitle_imagePath}" />
-                    <h:outputLabel value="#{bundle.EditDevtoolsLabel_iduser}" for="iduser" />
-                    <h:selectOneMenu id="iduser" value="#{devtoolsController.selected.iduser}" title="#{bundle.EditDevtoolsTitle_iduser}" >
-                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    
                 </h:panelGrid>
                 <h:commandLink action="#{devtoolsController.update}" value="#{bundle.EditDevtoolsSaveLink}"/>
                 <br />

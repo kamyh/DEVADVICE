@@ -1,11 +1,13 @@
 package jsf_pages;
 
 import entities.Comments;
+import entities.Devtools;
 import jsf_pages.util.JsfUtil;
 import jsf_pages.util.PaginationHelper;
 import session.CommentsFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -61,6 +63,10 @@ public class CommentsController implements Serializable {
         }
         return pagination;
     }
+    
+    public List<Comments> getItemsAvailable(int devtoolId) {
+        return ejbFacade.findOwn(devtoolId);
+    }
 
     public String prepareList() {
         recreateModel();
@@ -73,7 +79,7 @@ public class CommentsController implements Serializable {
         return "View";
     }
 
-    public String prepareCreate() {
+    public String prepareCreate(int idDevTool) {
         current = new Comments();
         selectedItemIndex = -1;
         return "Create";
@@ -83,7 +89,7 @@ public class CommentsController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CommentsCreated"));
-            return prepareCreate();
+            return prepareCreate(current.getId());
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -114,6 +120,10 @@ public class CommentsController implements Serializable {
         recreatePagination();
         recreateModel();
         return "List";
+    }
+    
+    public List<Comments> all() {
+        return ejbFacade.findAll();
     }
 
     public String destroyAndView() {

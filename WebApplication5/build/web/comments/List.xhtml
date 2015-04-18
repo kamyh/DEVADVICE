@@ -3,65 +3,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
+    #{param['id_dev_tool']}
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListCommentsTitle}"></h:outputText>
+            <h:outputText value="Comments"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListCommentsEmpty}" rendered="#{commentsController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{commentsController.items.rowCount > 0}">
-                    <h:outputText value="#{commentsController.pagination.pageFirstItem + 1}..#{commentsController.pagination.pageLastItem + 1}/#{commentsController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{commentsController.previous}" value="#{bundle.Previous} #{commentsController.pagination.pageSize}" rendered="#{commentsController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{commentsController.next}" value="#{bundle.Next} #{commentsController.pagination.pageSize}" rendered="#{commentsController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{commentsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCommentsTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCommentsTitle_text}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.text}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCommentsTitle_idDevtool}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idDevtool}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCommentsTitle_idUser}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idUser}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{commentsController.prepareView}" value="#{bundle.ListCommentsViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{commentsController.prepareEdit}" value="#{bundle.ListCommentsEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{commentsController.destroy}" value="#{bundle.ListCommentsDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{commentsController.prepareCreate}" value="#{bundle.ListCommentsCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListCommentsIndexLink}"/>
-            </h:form>
+            
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListCommentsEmpty}" rendered="#{commentsController.items.rowCount == 0}"/>
+                        <h:panelGroup>
+                            <ul class="list-group">
+                                <c:forEach items="#{commentsController.getItemsAvailable(param['id_dev_tool'])}" var="item">
+                                    <li class="list-group-item">#{item.text}</li>
+                                </c:forEach>
+                            </ul>
+                        </h:panelGroup>
+                        <br />
+                        <h:button class="btn btn-success" outcome="/comments/Create.xhtml?id_dev_tool=#{param['id_dev_tool']}" value="Comments"/>
+                        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.ListCommentsIndexLink}"/>
+                    </h:form>
+                
         </ui:define>
     </ui:composition>
 
