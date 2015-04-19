@@ -15,8 +15,10 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundlekj.CreateUsersLabel_loginName}" for="loginName" />
-                    <h:inputText id="loginName" value="#{usersController.selected.loginName}" title="#{bundlekj.CreateUsersTitle_loginName}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_loginName}"/>
+                    <h:outputLabel value="login: (email)" for="loginName" />
+                    <h:inputText id="loginName" value="#{usersController.selected.loginName}" title="#{bundlekj.CreateUsersTitle_loginName}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_loginName}">
+                        <f:validator validatorId="validator.EmailValidator" />
+                    </h:inputText>
                     <h:outputLabel value="#{bundlekj.CreateUsersLabel_password}" for="password" />
                     <h:inputText id="password" value="#{usersController.selected.password}" title="#{bundlekj.CreateUsersTitle_password}" />
                     <h:outputLabel value="#{bundlekj.CreateUsersLabel_firstname}" for="firstname" />

@@ -77,6 +77,24 @@ public class DevtoolsController implements Serializable {
         }
     }
     
+    public void rankIncr(int id)
+    {
+        Devtools d = getFacade().find(id);
+        
+        d.setRank(d.getRank() + 1);
+        
+        getFacade().edit(d);
+    }
+    
+    public void rankDecr(int id)
+    {
+        Devtools d = getFacade().find(id);
+        
+        d.setRank(d.getRank() - 1);
+        
+        getFacade().edit(d);
+    }
+    
     public List<Devtools> search()
     {
         Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
