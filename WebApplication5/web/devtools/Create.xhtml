@@ -38,7 +38,9 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Rank</span>
-                                    <h:inputText id="devtools_input_rank" class="form-control" value="#{devtoolsController.selected.rank}" title="#{devtools.CreateDevtoolsTitle_rank}" />
+                                    <h:inputText id="devtools_input_rank" class="form-control" value="#{devtoolsController.selected.rank}" title="#{devtools.CreateDevtoolsTitle_rank}" >
+                                        <f:validator validatorId="validator.RankValidator" />
+                                    </h:inputText>
                             </div>
                         </div>
                     </div>
@@ -48,7 +50,9 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Description</span>
-                                    <h:inputTextarea id="devtools_input_description" class="form-control" rows="4" cols="30" value="#{devtoolsController.selected.description}" title="#{devtools.CreateDevtoolsTitle_description}" />
+                                    <h:inputTextarea id="devtools_input_description" class="form-control" rows="4" cols="30" value="#{devtoolsController.selected.description}" title="#{devtools.CreateDevtoolsTitle_description}" >
+                                        <!--<f:validator validatorId="validator.EmailValidator" />-->
+                                    </h:inputTextarea>
                             </div>
                         </div>
                     </div>
@@ -58,7 +62,9 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Url</span>
-                                    <h:inputText id="devtools_input_url" class="form-control" value="#{devtoolsController.selected.url}" title="#{devtools.CreateDevtoolsTitle_url}" />
+                                    <h:inputText id="devtools_input_url" class="form-control" value="#{devtoolsController.selected.url}" title="#{devtools.CreateDevtoolsTitle_url}" >
+                                        <f:validator validatorId="validator.URLValidator" />
+                                    </h:inputText>
                             </div>
                         </div>
                     </div>
@@ -68,7 +74,9 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Name</span>
-                                    <h:inputText class="form-control" id="devtools_input_name" value="#{devtoolsController.selected.name}" title="#{devtools.CreateDevtoolsTitle_name}" />
+                                    <h:inputText class="form-control" id="devtools_input_name" value="#{devtoolsController.selected.name}" title="#{devtools.CreateDevtoolsTitle_name}" >
+                                        <f:validator validatorId="validator.UsersValidator" />
+                                    </h:inputText>
                             </div>
                         </div>
                     </div>

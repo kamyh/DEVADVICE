@@ -32,20 +32,28 @@
                     <br/>
                     <h:form>
                         <div class="row">
-                            <h:selectOneMenu id="devtools_select_type_search" binding="#{type}">
-                                <f:selectItem itemLabel="All" itemValue="" />
-                                <f:selectItem itemLabel="IDE" itemValue="ide" />
-                                <f:selectItem itemLabel="Api" itemValue="api" />
-                                <f:selectItem itemLabel="SDK" itemValue="sdk" />
-                                <f:selectItem itemLabel="Plugin" itemValue="plugins" />
-                                <f:selectItem itemLabel="Framework" itemValue="framework" />
-                            </h:selectOneMenu>  
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <h:inputText id="devtools_input_search" class="form-control" value="Search for..." binding="#{input}" />
-                                    <span class="input-group-btn">
-                                        <h:commandButton id="devtools_button_search" class="btn btn-default" action="#{devtoolsController.Preparesearch(input.value,type.value)}" value="Search" type="submit"/>
-                                    </span>
+                                    <span class="input-group-addon" id="basic-addon1">Type</span>
+                                    <h:selectOneMenu class="form-control" id="devtools_select_type_search" binding="#{type}">
+                                        <f:selectItem itemLabel="All" itemValue="" />
+                                        <f:selectItem itemLabel="IDE" itemValue="ide" />
+                                        <f:selectItem itemLabel="Api" itemValue="api" />
+                                        <f:selectItem itemLabel="SDK" itemValue="sdk" />
+                                        <f:selectItem itemLabel="Plugin" itemValue="plugins" />
+                                        <f:selectItem itemLabel="Framework" itemValue="framework" />
+                                    </h:selectOneMenu> 
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                <h:inputText id="devtools_input_search" class="form-control" value="Search for..." binding="#{input}" />
+                                <span class="input-group-btn">
+                                    <h:commandButton id="devtools_button_search" class="btn btn-default" action="#{devtoolsController.Preparesearch(input.value,type.value)}" value="Search" type="submit"/>
+                                </span>
                                 </div>
                             </div>
                         </div>
@@ -60,15 +68,15 @@
                                   <img src="#{item.getImg()}" alt="..."></img>
                                 <div class="caption">
                                     <h3><h:outputText value="#{item.name}"/></h3>
-                                    <p><h:outputLabel value="Rank"  style="margin-right: 2%"></h:outputLabel><h:outputText value="#{item.rank}"/></p>
+                                    <p><h:outputLabel value="Rank"  style="margin-right: 2%"></h:outputLabel><h:outputText id="rank_value" value="#{item.rank}"/></p>
                                     <p><h:outputLabel value=""></h:outputLabel><h:outputText value="#{item.type}" style="color:blue"/>
                                     <h:outputLabel value=""></h:outputLabel><h:outputText value="#{item.url}" style="color:gray;margin-left: 8px"/></p>
                                     <p><h:outputText value="#{item.description}"/></p>
                                     <p>
-                                        <h:button style="margin-right: 1%" id="devtools_button_comments_#{item.id}" class="btn btn-success" outcome="/comments/List.xhtml?id_dev_tool=#{item.id}" value="Comments"/>
+                                        <h:button  style="margin-right: 1%" id="devtools_button_comments" class="btn btn-success" outcome="/comments/List.xhtml?id_dev_tool=#{item.id}" value="Comments"/>
 
-                                        <h:commandLink style="margin-right: 1%" id="devtools_button_rank_plus_#{item.id}" class="btn btn-primary" action="#{devtoolsController.rankIncr(item.id)}" value="+"/>
-                                        <h:commandLink style="margin-right: 1%" id="devtools_button_rank_minus_#{item.id}" class="btn btn-warning" action="#{devtoolsController.rankDecr(item.id)}" value="-"/>
+                                        <h:commandLink style="margin-right: 1%" id="devtools_button_rank_plus" class="btn btn-primary" action="#{devtoolsController.rankIncr(item.id)}" value="+"/>
+                                        <h:commandLink style="margin-right: 1%" id="devtools_button_rank_minus" class="btn btn-warning" action="#{devtoolsController.rankDecr(item.id)}" value="-"/>
                                         
                                         <h:commandLink id="devtools_button_view_#{item.id}" class="btn btn-success" action="#{devtoolsController.prepareView(item.id)}" value="#{bundle.ListDevtoolsViewLink}"/>
 

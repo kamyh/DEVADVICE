@@ -13,7 +13,7 @@
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <h:messages id="message" errorStyle="color: red" infoStyle="color: green"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListDevtoolsEmpty}" rendered="#{devtoolsController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{devtoolsController.items.rowCount > 0}">
@@ -31,9 +31,9 @@
                                     <p>
                                         <h:commandLink id="devtools_button_view_#{item.id}" class="btn btn-success" action="#{devtoolsController.prepareView(item.id)}" value="#{bundle.ListDevtoolsViewLink}"/>
                                         <h:outputText value=" "/>
-                                        <h:commandLink id="devtools_button_edit_#{item.id}" class="btn btn-success" action="#{devtoolsController.prepareEdit}" value="#{bundle.ListDevtoolsEditLink}"/>
+                                        <h:commandLink id="devtools_button_edit" class="btn btn-success" action="#{devtoolsController.prepareEdit}" value="#{bundle.ListDevtoolsEditLink}"/>
                                         <h:outputText value=" "/>
-                                        <h:commandLink id="devtools_button_delete_#{item.id}" class="btn btn-danger" action="#{devtoolsController.destroy}" value="#{bundle.ListDevtoolsDestroyLink}"/>
+                                        <h:commandLink id="devtools_button_delete" class="btn btn-danger" action="#{devtoolsController.destroy}" value="#{bundle.ListDevtoolsDestroyLink}"/>
                                     </p>
                                 </div>
                               </div>

@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div id="is_account" value="false"></div>
         <h1>ERROR</h1>
     </body>
 </html>

@@ -7,25 +7,58 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundlekj.CreateUsersTitle}"></h:outputText>
+            <h:outputText value="Register"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="login: (email)" for="loginName" />
-                    <h:inputText id="loginName" value="#{usersController.selected.loginName}" title="#{bundlekj.CreateUsersTitle_loginName}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_loginName}">
-                        <f:validator validatorId="validator.EmailValidator" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundlekj.CreateUsersLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{usersController.selected.password}" title="#{bundlekj.CreateUsersTitle_password}" />
-                    <h:outputLabel value="#{bundlekj.CreateUsersLabel_firstname}" for="firstname" />
-                    <h:inputText id="firstname" value="#{usersController.selected.firstname}" title="#{bundlekj.CreateUsersTitle_firstname}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_firstname}"/>
-                    <h:outputLabel value="#{bundlekj.CreateUsersLabel_lastname}" for="lastname" />
-                    <h:inputText id="lastname" value="#{usersController.selected.lastname}" title="#{bundlekj.CreateUsersTitle_lastname}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_lastname}"/>
-                </h:panelGrid>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Login (email)</span>
+                                    <h:inputText class="form-control" id="loginName" value="#{usersController.selected.loginName}" title="#{bundlekj.CreateUsersTitle_loginName}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_loginName}">
+                                        <f:validator validatorId="validator.EmailValidator" />
+                                    </h:inputText>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Password</span>
+                                    <h:inputText class="form-control" id="password" value="#{usersController.selected.password}" title="#{bundlekj.CreateUsersTitle_password}" >
+                                        <f:validator validatorId="validator.PasswordValidator" />
+                                    </h:inputText>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Firstname</span>
+                                    <h:inputText class="form-control" id="firstname" value="#{usersController.selected.firstname}" title="#{bundlekj.CreateUsersTitle_firstname}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_firstname}">
+                                        <f:validator validatorId="validator.UsersValidator" />
+                                    </h:inputText>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Lastname</span>
+                                    <h:inputText class="form-control" id="lastname" value="#{usersController.selected.lastname}" title="#{bundlekj.CreateUsersTitle_lastname}" required="true" requiredMessage="#{bundlekj.CreateUsersRequiredMessage_lastname}">
+                                         <f:validator validatorId="validator.UsersValidator" />
+                                    </h:inputText>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <br />
                 <h:commandLink id="users_button_save" action="#{usersController.create}" value="#{bundlekj.CreateUsersSaveLink}" />
                 <br />

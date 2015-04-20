@@ -21,7 +21,9 @@
                     <h:form>
                         <h:panelGrid columns="2">
                            <h:outputLabel value="#{bundle.CreateCommentsLabel_text}" for="text" />
-                            <h:inputTextarea rows="4" cols="30" id="comments_inputarea_text" value="#{commentsController.selected.text}" title="#{bundle.CreateCommentsTitle_text}" />
+                            <h:inputTextarea rows="4" cols="30" id="comments_inputarea_text" value="#{commentsController.selected.text}" title="#{bundle.CreateCommentsTitle_text}" >
+                                <f:validator validatorId="validator.CommentValidator" />
+                            </h:inputTextarea>
                             #{commentsController.selected.setIdUserF(3)}
                             #{commentsController.selected.setIdDevtoolF(param['id_dev_tool'])}
                         </h:panelGrid>
