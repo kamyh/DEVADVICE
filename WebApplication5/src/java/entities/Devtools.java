@@ -105,11 +105,11 @@ public class Devtools implements Serializable {
         
         switch(this.type) {
             //case "sdk":  urlImg = "http://blog.generalassemb.ly/blog/wp-content/uploads/2014/07/clean-code.jpg";  break;
-            case "sdk":  urlImg = "./resource/img/sdl.jpg";  break;
-            case "api":  urlImg = "http://developer.quantcast.com/files/API_PAGE_CLOUD_-_crop.png";  break;
-            case "ide":  urlImg = "http://danston.com/portal/components/com_virtuemart/shop_image/product/Cable_Ide_133_4f0310cf51dd5.jpg";  break;
-            case "framework":  urlImg = "http://images.atelier.net/sites/default/files/imagecache/scale_crop_587_310/articles/423600/atelier-nouvelle-programmation-informatique.jpg";  break;
-            case "plugins":  urlImg = "http://www.wpmayor.com/wp-content/uploads/wordpress-plugins2.jpg";  break;
+            case "sdk":  urlImg = "/WebApplication5/resources/img/sdk.jpg";  break;
+            case "api":  urlImg = "/WebApplication5/resources/img/api.png";  break;
+            case "ide":  urlImg = "/WebApplication5/resources/img/ide.jpg";  break;
+            case "framework":  urlImg = "/WebApplication5/resources/img/framework.jpg";  break;
+            case "plugins":  urlImg = "/WebApplication5/resources/img/plugin.jpg";  break;
           }
         
         return urlImg;

@@ -65,20 +65,20 @@
                         <c:forEach items="#{devtoolsController.search()}" var="item">
                             <div class="col-sm-6 col-md-4">
                               <div class="thumbnail" style="display:block">
-                                  <img src="#{item.getImg()}" alt="..."></img>
+                                  <img style="height:200px;" src="#{item.getImg()}" alt="..."></img>
                                 <div class="caption">
                                     <h3><h:outputText value="#{item.name}"/></h3>
                                     <p><h:outputLabel value="Rank"  style="margin-right: 2%"></h:outputLabel><h:outputText id="rank_value" value="#{item.rank}"/></p>
                                     <p><h:outputLabel value=""></h:outputLabel><h:outputText value="#{item.type}" style="color:blue"/>
                                     <h:outputLabel value=""></h:outputLabel><h:outputText value="#{item.url}" style="color:gray;margin-left: 8px"/></p>
-                                    <p><h:outputText value="#{item.description}"/></p>
+                                    <p style="height:200px; overflow: hidden"><h:outputText value="#{item.description}"/></p>
                                     <p>
                                         <h:button  style="margin-right: 1%" id="devtools_button_comments" class="btn btn-success" outcome="/comments/List.xhtml?id_dev_tool=#{item.id}" value="Comments"/>
 
                                         <h:commandLink style="margin-right: 1%" id="devtools_button_rank_plus" class="btn btn-primary" action="#{devtoolsController.rankIncr(item.id)}" value="+"/>
                                         <h:commandLink style="margin-right: 1%" id="devtools_button_rank_minus" class="btn btn-warning" action="#{devtoolsController.rankDecr(item.id)}" value="-"/>
                                         
-                                        <h:commandLink id="devtools_button_view_#{item.id}" class="btn btn-success" action="#{devtoolsController.prepareView(item.id)}" value="#{bundle.ListDevtoolsViewLink}"/>
+                                        <h:button id="devtools_button_view_#{item.id}" class="btn btn-success" outcome="/devtools/View.xhtml?id_dev_tool=#{item.id}" value="#{bundle.ListDevtoolsViewLink}"/>
 
                                     </p>
                                 </div>

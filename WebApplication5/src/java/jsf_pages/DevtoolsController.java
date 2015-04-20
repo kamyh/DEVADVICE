@@ -95,6 +95,11 @@ public class DevtoolsController implements Serializable {
         getFacade().edit(d);
     }
     
+    public void setSelected(int id)
+    {
+        this.current = getFacade().find(id);
+    }
+    
     public List<Devtools> search()
     {
         Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
